@@ -1,0 +1,44 @@
+{
+  "usuario": [
+    {
+      "id": "matheus.olimp@outlook.com",
+      "email": "matheus.olimp@outlook.com",
+      "nome": "Matheus Olimpio",
+      "senha": "123",
+      "rua": "Rua teste",
+      "cep": "12345678",
+      "numero": "25",
+      "estado": "SP",
+      "cidade": "Sao Paulo"
+    }
+  ],
+  "produto": [
+    {
+      "id": "notebook",
+      "nome": "Notebook",
+      "usuario_id": "matheus.olimp@outlook.com",
+      "preco": "4999",
+      "vendido": "false",
+      "descricao": "Esse é um novo notebook.",
+      "fotos": null
+    },
+    {
+      "id": "smartphone",
+      "nome": "Smartphone",
+      "usuario_id": "matheus.olimp@outlook.com",
+      "preco": "1999",
+      "vendido": "false",
+      "descricao": "Esse é um novo smartphone.",
+      "fotos": null
+    },
+    {
+      "id": "tablet",
+      "nome": "Tablet",
+      "usuario_id": "matheus.olimp@outlook.com",
+      "preco": "1399",
+      "vendido": "false",
+      "descricao": "Esse é um novo tablet.",
+      "fotos": null
+    }
+  ]
+}
