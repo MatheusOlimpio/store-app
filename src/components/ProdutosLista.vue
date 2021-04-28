@@ -10,24 +10,39 @@
       <p class="preco">{{ produto.preco }}</p>
       <p class="descricao">{{ produto.descricao }}</p>
     </div>
+    {{url}}
   </section>
 </template>
 
 <script>
+import { api } from "@/services.js";
+
 export default {
   data() {
     return {
       produtos: null,
     };
   },
+  computed: {
+    url() {
+      let queryString = '';
+      for(let key in this.$route.query) {
+        queryString += `&${key}=${this.$route.query[key]}`;
+      }
+      return '/produto?_limit=3' + queryString;
+    }
+  },
   methods: {
     getProdutos() {
-      fetch("http://localhost:3000/produto")
-        .then((r) => r.json())
-        .then((data) => {
-          this.produtos = data;
-        });
+      api.get(this.url).then((response) => {
+        this.produtos = response.data;
+      });
     },
+  },
+  watch: {
+    url() {
+      this.getProdutos();
+    }
   },
   created() {
     this.getProdutos();
