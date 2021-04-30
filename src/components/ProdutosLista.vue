@@ -13,7 +13,7 @@
           <p class="descricao">{{ produto.descricao }}</p>
         </router-link>
       </div>
-      <ProdutosPaginar
+      <ProdutosPaginas
         :total="produtosTotal"
         :produtosPorPagina="produtosPorPagina"
       />
@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import ProdutosPaginar from "@/components/ProdutosPaginar.vue";
+import ProdutosPaginas from "@/components/ProdutosPaginas.vue";
 import { api } from "@/services.js";
 import { serialize } from "@/helpers.js";
 export default {
@@ -38,7 +38,7 @@ export default {
     };
   },
   components: {
-    ProdutosPaginar,
+    ProdutosPaginas,
   },
   computed: {
     url() {
