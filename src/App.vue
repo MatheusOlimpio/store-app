@@ -66,6 +66,26 @@ img {
   display: block;
 }
 
+input,
+textarea {
+  border-radius: 4px;
+  border: 1px solid white;
+  padding: 15px;
+  box-shadow: 0 4px 8px rgba(30, 60, 90, 0.1);
+  transition: all 0.3s;
+  font-size: 1rem;
+  font-family: "Avenir", Arial, Helvetica, sans-serif;
+  margin-bottom: 15px;
+}
+
+input:hover,
+input:focus textarea:hover,
+textarea:focus {
+  outline: none;
+  box-shadow: 0 6px 12px rgba(30, 60, 90, 0.4);
+  border-color: #87f;
+}
+
 .btn {
   display: block;
   padding: 10px 30px;
