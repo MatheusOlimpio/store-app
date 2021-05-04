@@ -1,26 +1,30 @@
 <template>
   <section class="produtos-container">
-    <div v-if="produtos.length > 0" class="produtos">
-      <div v-for="(produto, index) in produtos" :key="index" class="produto">
-        <router-link to="/">
-          <img
-            v-if="produto.fotos"
-            :src="produto.fotos[0].src"
-            :alt="produto.fotos[0].titulo"
-          />
-          <p class="preco">{{ produto.preco }}</p>
-          <h2 class="titulo">{{ produto.nome }}</h2>
-          <p class="descricao">{{ produto.descricao }}</p>
-        </router-link>
+    <transition mode="out-in">
+      <div v-if="produtos && produtos.length" class="produtos" key="produtos">
+        <div v-for="(produto, index) in produtos" :key="index" class="produto">
+          <router-link :to="{ name: 'produto', params: { id: produto.id } }">
+            <img
+              v-if="produto.fotos"
+              :src="produto.fotos[0].src"
+              :alt="produto.fotos[0].titulo"
+            />
+            <p class="preco">{{ produto.preco }}</p>
+            <h2 class="titulo">{{ produto.nome }}</h2>
+            <p class="descricao">{{ produto.descricao }}</p>
+          </router-link>
+        </div>
+        <ProdutosPaginas
+          :total="produtosTotal"
+          :produtosPorPagina="produtosPorPagina"
+        />
       </div>
-      <ProdutosPaginas
-        :total="produtosTotal"
-        :produtosPorPagina="produtosPorPagina"
-      />
-    </div>
-    <div v-else-if="produtos.length === 0" class="sem-resultados">
-      <h1>Nenhum produto encontrado</h1>
-    </div>
+
+      <div v-else-if="produtos && produtos.length === 0" key="sem-resultados">
+        <h1 class="sem-resultados">Nenhum produto encontrado</h1>
+      </div>
+      <PaginaCarregando v-else key="carregando" />
+    </transition>
   </section>
 </template>
 
@@ -32,8 +36,8 @@ export default {
   name: "produtosLista",
   data() {
     return {
-      produtos: [],
-      produtosPorPagina: 3,
+      produtos: null,
+      produtosPorPagina: 9,
       produtosTotal: 0,
     };
   },
@@ -48,9 +52,12 @@ export default {
   },
   methods: {
     getProdutos() {
+      this.produtos = null;
       api.get(this.url).then((response) => {
-        this.produtosTotal = parseInt(response.headers["x-total-count"]);
-        this.produtos = response.data;
+        setTimeout(() => {
+          this.produtosTotal = parseInt(response.headers["x-total-count"]);
+          this.produtos = response.data;
+        }, 1000);
       });
     },
   },

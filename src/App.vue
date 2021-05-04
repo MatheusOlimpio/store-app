@@ -106,4 +106,33 @@ textarea:focus {
   background: #65d;
   transform: scale(1.1);
 }
+
+.v-enter-active {
+  animation: fadeIn 0.2s;
+}
+
+.v-leave-active {
+  animation: fadeOut 0.2s;
+}
+
+@keyframes fadeIn {
+  from {
+    transform: translate3d(-90px, 0, 0);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    transform: translate3d(0px, 0, 0);
+  }
+
+  to {
+    transform: translate3d(20vh, 0, 0);
+    opacity: 0;
+  }
+}
 </style>

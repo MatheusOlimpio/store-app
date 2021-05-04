@@ -8,8 +8,10 @@ export function serialize(obj) {
 }
 
 export function formataPreco(value) {
-  return value.toLocaleString("pt-br", {
+  const price = value.toLocaleString("pt-BR", {
     style: "currency",
     currency: "BRL",
   });
+  console.log(price);
+  return price;
 }
