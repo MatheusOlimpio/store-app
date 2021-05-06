@@ -9,7 +9,7 @@
               :src="produto.fotos[0].src"
               :alt="produto.fotos[0].titulo"
             />
-            <p class="preco">{{ produto.preco }}</p>
+            <p class="preco">{{ formatarPreco(produto.preco) }}</p>
             <h2 class="titulo">{{ produto.nome }}</h2>
             <p class="descricao">{{ produto.descricao }}</p>
           </router-link>
@@ -31,7 +31,7 @@
 <script>
 import ProdutosPaginas from "@/components/ProdutosPaginas.vue";
 import { api } from "@/services.js";
-import { serialize } from "@/helpers.js";
+import { serialize, formataPreco } from "@/helpers.js";
 export default {
   name: "produtosLista",
   data() {
@@ -59,6 +59,9 @@ export default {
           this.produtos = response.data;
         }, 1000);
       });
+    },
+    formatarPreco(value) {
+      return formataPreco(value);
     },
   },
   watch: {
